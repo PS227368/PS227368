@@ -10,7 +10,7 @@
         <TextBlock Height="23" HorizontalAlignment="Left"  Name="textBlock1" Text="Email" VerticalAlignment="Top" Width="67" Margin="160,107,0,0" />
         <TextBlock Height="23" HorizontalAlignment="Left"  Name="textBlock2" Text="Password" VerticalAlignment="Top" Width="77" Margin="160,194,0,0" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="242,107,0,0" x:Name="email" VerticalAlignment="Top" Width="246" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="242,194,0,0" x:Name="password" VerticalAlignment="Top" Width="247" />
+        <PasswordBox Height="23" HorizontalAlignment="Left" Margin="242,194,0,0" x:Name="password" VerticalAlignment="Top" Width="247" />
         <Button Content="Login" Height="23" HorizontalAlignment="Left" Margin="242,248,0,0" Name="login" VerticalAlignment="Top" Width="104" Click="login_Click"  />
         <Button Content="Register" Height="23" HorizontalAlignment="Left" Margin="385,248,0,0" Name="register" VerticalAlignment="Top" Width="104" Click="register_Click"  />
     </Grid>

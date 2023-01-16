@@ -12,7 +12,7 @@
         <TextBlock HorizontalAlignment="Left" Name="textBlock3"  Margin="160,0,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Center"/>
         <TextBox Height="23" HorizontalAlignment="Left" Margin="242,107,0,0" x:Name="naamreg" VerticalAlignment="Top" Width="246" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="242,158,0,0" x:Name="emailreg" VerticalAlignment="Top" Width="247" />
-        <TextBox HorizontalAlignment="Left" x:Name="pasreg" Margin="245,0,0,0" VerticalAlignment="Center" Width="244" Height="23"/>
+        <PasswordBox HorizontalAlignment="Left" x:Name="pasreg" Margin="245,0,0,0" VerticalAlignment="Center" Width="244" Height="23"/>
         <Button Content="Registreren" Height="62" HorizontalAlignment="Left" Margin="263,268,0,0" Name="register" VerticalAlignment="Top" Width="181" Click="register_Click"  />
     </Grid>
 </Window>
