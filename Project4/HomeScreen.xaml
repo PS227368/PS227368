@@ -6,7 +6,35 @@
         xmlns:local="clr-namespace:Project4"
         mc:Ignorable="d"
         Title="HomeScreen" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="pizza_bt" Width="100" Height="40" Click="Pizzas_Click"></Button>
+    <Grid Background="SkyBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10px"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="10px"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10px"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="10px"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40px"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Foreground="White" Text="Welkom bij StonksPizza!" FontSize="24px" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" FontSize="15px" Foreground="White" Text="Bij StonksPizza kunt u heerlijke pizza's bestellen en er van genieten tot de laatste hap is door geslikt."></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" FontSize="15px" Foreground="White" Text="Wij bereiden onze pizza's met liefde en passie, zorgen er voor dat de pizza's op tijd zijn en dat ze heerlijk smaken." Margin="0,18,0,0"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" FontSize="16px" Foreground="White" Text="Om pizza's te bestellen klik op de knop 'Bestellen' hieronder." HorizontalAlignment="Center"></TextBlock>
+            <Button x:Name="pizza_bt"  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Bestellen" FontSize="18px" Click="Pizzas_Click"></Button>
+        </Grid>
     </Grid>
 </Window>
