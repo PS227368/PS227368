@@ -23,5 +23,12 @@ namespace Project4
         {
             InitializeComponent();
         }
+
+        private void Pizzas_Click(object sender, RoutedEventArgs e)
+        {
+            Pizza pizzas = new Pizza();
+            pizzas.Show();
+            this.Close();
+        }
     }
 }

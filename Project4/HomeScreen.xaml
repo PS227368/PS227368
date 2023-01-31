@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="HomeScreen" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="pizza_bt" Width="100" Height="40" Click="Pizzas_Click"></Button>
     </Grid>
 </Window>

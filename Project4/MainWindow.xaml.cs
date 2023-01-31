@@ -49,7 +49,7 @@ namespace Project4
                     bool ingelogd = false;
                     while (!ingelogd && reader.Read())
                     {
-                        ingelogd = (BCrypt.Net.BCrypt.Verify(password.Text, (string)reader["password"]));
+                        ingelogd = (BCrypt.Net.BCrypt.Verify(password.Name, (string)reader["password"]));
                     }
 
                     if (ingelogd)

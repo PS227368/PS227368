@@ -41,7 +41,7 @@ namespace Project4.screens
                  
                     //hash het wachtwoord:
                     string salt = BCrypt.Net.BCrypt.GenerateSalt();
-                    string hash = BCrypt.Net.BCrypt.HashPassword(pasreg.Text, salt);
+                    string hash = BCrypt.Net.BCrypt.HashPassword(pasreg.Name, salt);
 
                 cmd.Parameters.AddWithValue("@name", naamreg.Text);
                 cmd.Parameters.AddWithValue("@email", emailreg.Text);
