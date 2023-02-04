@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+using Microsoft.Azure.Amqp.Framing;
 using Org.BouncyCastle.Math;
 using System;
 using System.Collections.Generic;

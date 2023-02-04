@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,17 +14,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
-using System.Linq.Expressions;
-using Project4.screens;
 using BCrypt.Net;
+using Project4.screens;
+using System.Runtime.CompilerServices;
 
 namespace Project4
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public MainWindow()
         {
@@ -38,11 +33,9 @@ namespace Project4
             {
                 try
                 {
-
                     _connection.Open();
                     string voegdata = "SELECT * FROM users where email=@email";
                     MySqlCommand cmd = new MySqlCommand(voegdata, _connection);
-
 
                     cmd.Parameters.AddWithValue("@email", email.Text);
                     MySqlDataReader reader = cmd.ExecuteReader();
@@ -62,24 +55,25 @@ namespace Project4
                     {
                         MessageBox.Show("Wachtwoord en of Email is onjuist");
                     }
-
                 }
                 catch (Exception error)
                 {
                     MessageBox.Show($"Fout {error.Message}.");
-
                 }
-
             }
-         }
+        }
 
         private void register_Click(object sender, RoutedEventArgs e)
         {
-            RegisterLoginScreen l1 = new RegisterLoginScreen(); 
+            RegisterLoginScreen l1 = new RegisterLoginScreen();
             this.Close();
             l1.Show();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
-
-
 }
