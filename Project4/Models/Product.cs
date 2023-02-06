@@ -1,5 +1,4 @@
 ﻿using Google.Protobuf.WellKnownTypes;
-using Microsoft.Azure.Amqp.Framing;
 using Org.BouncyCastle.Math;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ using System.Windows.Media.Media3D;
 
 namespace Project4.Models
 {
-    public class Products
+    public class Products : LoadingImage
     {
         private UInt64 id;
 
@@ -42,12 +41,17 @@ namespace Project4.Models
             get { return description; }
             set { description = value; }
         }
-        private string imgpizza = null!;
 
-        public string Imgpizza
+        public virtual void MakeSound()
         {
-            get { return imgpizza; }
-            set { imgpizza = value; }
+            Console.WriteLine("The Food is bad.");
+        }
+    }
+    class Bread : Products
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("The pizza is bussing.");
         }
     }
 }
