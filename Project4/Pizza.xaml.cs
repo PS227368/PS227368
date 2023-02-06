@@ -124,11 +124,11 @@ namespace Project4
             }
         }
 
-        private void DogMessage_Click(object sender, RoutedEventArgs e)
+        private void PizzaMessage_Click(object sender, RoutedEventArgs e)
         {
-            Bread myDog = new Bread();
-            myDog.Name = "mollitia";
-            myDog.MakeSound(); // Output: "The dog barks."
+            Bread pizza = new Bread();
+            pizza.Name = selectedPizza.Name;
+            pizza.MakeSound(); 
         }
     }
 }

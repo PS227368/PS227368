@@ -62,6 +62,6 @@
             <RadioButton x:Name="medium_rb" Content="Medium" IsChecked="True" Checked="rbmedium_Checked"></RadioButton>
             <RadioButton x:Name="groot_rb" Content="Groot" IsChecked="False" Checked="rbgroot_Checked"></RadioButton>
         </StackPanel>
-        <Button x:Name="DogMessage" Content="Dog Message" Click="DogMessage_Click" Width="75" Height="30" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
+        <Button x:Name="PizzaMessage" Content="Pizza Message" Click="PizzaMessage_Click" Width="80" Height="30" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
     </Grid>
 </Window>
