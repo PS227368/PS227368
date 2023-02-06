@@ -1,9 +1,12 @@
-﻿using Org.BouncyCastle.Bcpg.Sig;
+﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Bcpg.Sig;
+using Org.BouncyCastle.Math;
 using Project4.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -61,7 +64,8 @@ namespace Project4
             PopulatePizzas();
             DataContext = this;
         }
-
+        private readonly string connString =
+            ConfigurationManager.ConnectionStrings["project4"].ConnectionString;
         private void PopulatePizzas()
         {
             string dbResult = db.GetPizzas(Pizzas);
@@ -72,7 +76,7 @@ namespace Project4
         }
         //private void AddPizza_Click(object sender, RoutedEventArgs e)
         //{
-            
+
         //}
 
         private void SelectedPizza_sc(object sender, SelectionChangedEventArgs e)
@@ -103,18 +107,18 @@ namespace Project4
                 {
                     double nieuwprijs = prijs * 0.8;
                     NaamPizza_tb.Text = naam;
-                    Prijs_tb.Text = "€ " + nieuwprijs.ToString();
+                    Prijs_tb.Text = nieuwprijs.ToString();
                 }
                 else if (groot_rb.IsChecked == true)
                 {
                     double nieuwprijs = prijs * 1.2;
                     NaamPizza_tb.Text = naam;
-                    Prijs_tb.Text = "€ " + nieuwprijs.ToString();
+                    Prijs_tb.Text = nieuwprijs.ToString();
                 }
                 else
                 {
                     NaamPizza_tb.Text = naam;
-                    Prijs_tb.Text = "€ " + prijs.ToString();
+                    Prijs_tb.Text = prijs.ToString();
                 }
             }
             else
@@ -128,6 +132,67 @@ namespace Project4
             Bread myDog = new Bread();
             myDog.Name = "mollitia";
             myDog.MakeSound(); // Output: "The dog barks."
+        }
+
+        private void AddtoCart_Click(object sender, RoutedEventArgs e)
+        {
+            int aantal = int.Parse(aantal_tb.Text);
+            double prijs = double.Parse(Prijs_tb.Text);
+            double totaalprijs = aantal * prijs;
+            double eindprijs = double.Parse(TotaalPrijs_tb.Text);
+            if (selectedPizza != null)
+            {
+                if (klein_rb.IsChecked == true)
+                {
+                    Shoppingcart_lb.Items.Add(aantal + "x " + selectedPizza.Name + "\nFormaat: Klein \n€ " + totaalprijs.ToString("0.00"));
+                    aantal_tb.Text = "1";
+                    groot_rb.IsChecked = false;
+                    medium_rb.IsChecked = true;
+                    klein_rb.IsChecked = false;
+                    eindprijs = totaalprijs + eindprijs;
+                    TotaalPrijs_tb.Text = eindprijs.ToString("0.00");
+                }
+                else if (groot_rb.IsChecked == true)
+                {
+                    Shoppingcart_lb.Items.Add(aantal + "x " + selectedPizza.Name + "\nFormaat: Groot \n€ " + totaalprijs.ToString("0.00"));
+                    aantal_tb.Text = "1";
+                    groot_rb.IsChecked = false;
+                    medium_rb.IsChecked = true;
+                    klein_rb.IsChecked = false;
+                    eindprijs = totaalprijs + eindprijs;
+                    TotaalPrijs_tb.Text = eindprijs.ToString("0.00");
+                }
+                else
+                {
+                    Shoppingcart_lb.Items.Add(aantal + "x " + selectedPizza.Name + "\nFormaat: Medium \n€ " + totaalprijs.ToString("0.00"));
+                    aantal_tb.Text = "1";
+                    eindprijs = totaalprijs + eindprijs;
+                    TotaalPrijs_tb.Text = eindprijs.ToString("0.00");
+                }
+            }
+            else
+            {
+                MessageBox.Show("There is no pizza selected", "Error", MessageBoxButton.OK);
+            }
+        }
+
+        private void PizzaDelete_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult myResult = MessageBox.Show("Weet je zeker dat je " + selectedPizza.Name + " wilt verwijderen? \nAls je die wilt verwijderen klik dan op 'Ja'! \nals dat niet je bedoeling is klik dan op 'nee'!", "Menu verwijderen", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (myResult == MessageBoxResult.Yes)
+            {
+                Shoppingcart_lb.Items.RemoveAt(Shoppingcart_lb.Items.IndexOf(Shoppingcart_lb.SelectedItem.ToString()));
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void Bestel_Click(object sender, RoutedEventArgs e)
+        {
+            //hier moet code om het te bestellen maar hebben genoeg user stories
         }
     }
 }
