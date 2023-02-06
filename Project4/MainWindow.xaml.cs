@@ -34,6 +34,7 @@ namespace Project4
                 try
                 {
                     _connection.Open();
+                    string user_id = "SELECT user_id FROM pizza_orders where email=@email";
                     string voegdata = "SELECT * FROM users where email=@email";
                     MySqlCommand cmd = new MySqlCommand(voegdata, _connection);
 

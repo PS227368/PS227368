@@ -10,15 +10,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="25"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView x:Name="Pizza_lv" ItemsSource="{Binding Pizzas}" SelectedItem="{Binding SelectedPizza}" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" SelectionChanged="SelectedPizza_sc">
+        <ListView x:Name="Pizza_lv" ItemsSource="{Binding Pizzas}" SelectedItem="{Binding SelectedPizza}" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" SelectionChanged="SelectedPizza_sc">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Background="SkyBlue">
@@ -69,5 +69,19 @@
         </StackPanel>
         <Button x:Name="BestelPizza_bt" Grid.Column="4" Grid.Row="1" Width="75" Height="25" Margin="0,110,0,0" Content="Add To Cart" Click="AddtoCart_Click"></Button>
         <Button x:Name="PizzaMessage" Content="Pizza Message" Click="PizzaMessage_Click" Width="80" Height="30" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
+        <StackPanel Grid.Column="3" Width="150">
+            <TextBlock x:Name="tbVoornaam" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top">Voornaam</TextBlock>
+            <TextBox x:Name="tboxVoornaam" ></TextBox>
+            <TextBlock x:Name="tbAchternaam" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top">Achternaam</TextBlock>
+            <TextBox x:Name="tboxAchternaam" ></TextBox>
+            <TextBlock x:Name="tbAdres" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top">Adres</TextBlock>
+            <TextBox x:Name="tboxAdres" ></TextBox>
+            <TextBlock x:Name="tbPostcode" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top">Postcode</TextBlock>
+            <TextBox x:Name="tboxPostcode" ></TextBox>
+            <TextBlock x:Name="tbStad" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top">Stad</TextBlock>
+            <TextBox x:Name="tboxStad" ></TextBox>
+            <TextBlock x:Name="tbBezorgdatum" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top">Bezorgdatum</TextBlock>
+            <DatePicker x:Name="DatumPrikker"></DatePicker>
+        </StackPanel>
     </Grid>
 </Window>

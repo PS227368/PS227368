@@ -145,7 +145,7 @@ namespace Project4
             {
                 if (klein_rb.IsChecked == true)
                 {
-                    Shoppingcart_lb.Items.Add(aantal + "x " + selectedPizza.Name + "\nFormaat: Klein \n€ " + totaalprijs.ToString("0.00"));
+                        
                     aantal_tb.Text = "1";
                     groot_rb.IsChecked = false;
                     medium_rb.IsChecked = true;
@@ -190,10 +190,66 @@ namespace Project4
                 return;
             }
         }
-
-        private void Bestel_Click(object sender, RoutedEventArgs e)
+        private void Bestel_Click(object sender, EventArgs e)
         {
-            //hier moet code om het te bestellen maar hebben genoeg user stories
+            int orderId = 1; //GetCurrentOrderId(); // Haal het huidige OrderID op
+            foreach (string pizzaString in Shoppingcart_lb.Items)
+            {
+                Item pizza = ConvertStringToItem(pizzaString);
+
+                using (MySqlConnection conn = new MySqlConnection(connString))
+                {
+                    int aantalkeer = Convert.ToInt32(pizza.aantal);
+                    while (aantalkeer > 0)
+                    {
+                        MySqlCommand pizzaCommand = new MySqlCommand("INSERT INTO shoppingcart (order_id, name, price) VALUES (@order_id, @name, @price)", conn);
+                        pizzaCommand.Parameters.AddWithValue("@order_id", orderId);
+                        pizzaCommand.Parameters.AddWithValue("@name", pizza.name);
+                        pizzaCommand.Parameters.AddWithValue("@price", pizza.price);
+                        conn.Open();
+                        pizzaCommand.ExecuteNonQuery();
+                        conn.Close();
+                        aantalkeer = -1;
+                    }
+                }
+                using (MySqlConnection conn = new MySqlConnection(connString))
+                {
+                    MySqlCommand pizzaCommand = new MySqlCommand("INSERT INTO pizza_orders (first_name, last_name, adress, postal_code, city, order_id) VALUES (@voornaam, @achternaam, @adres, @postcode, @stad, @order_id)", conn);
+                    pizzaCommand.Parameters.AddWithValue("@voornaam", tboxVoornaam.Text);
+                    pizzaCommand.Parameters.AddWithValue("@achternaam", tboxAchternaam.Text);
+                    pizzaCommand.Parameters.AddWithValue("@adres", tboxAdres.Text);
+                    pizzaCommand.Parameters.AddWithValue("@postcode", tboxPostcode.Text);
+                    pizzaCommand.Parameters.AddWithValue("@stad", tboxStad.Text);
+                    pizzaCommand.Parameters.AddWithValue("@order_id", orderId);
+                    conn.Open();
+                    pizzaCommand.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
         }
+
+        public class Item
+        {
+            public string name { get; set; }
+            public decimal price { get; set; }
+            public string aantal { get; set; }  
+
+            public override string ToString()
+            {
+                return name;
+            }
+        }
+
+        private Item ConvertStringToItem(string pizzaString)
+        {
+            // Voer hier de noodzakelijke conversie uit
+            // Bijvoorbeeld:
+            string[] parts = pizzaString.Split('x', ' ', '\n');
+            string aantal = parts[0];
+            string name = parts[2];
+            decimal price = decimal.Parse(parts[7]);
+            return new Item { aantal = aantal, name = name, price = price };
+        }
+
     }
 }
