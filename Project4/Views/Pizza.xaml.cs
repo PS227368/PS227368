@@ -1,4 +1,5 @@
-﻿using Project4.Models;
+﻿using Org.BouncyCastle.Bcpg.Sig;
+using Project4.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -69,10 +70,64 @@ namespace Project4
                 MessageBox.Show(dbResult + serviceDeskBericht);
             }
         }
-
-        private void AddPizza_Click(object sender, RoutedEventArgs e)
-        {
+        //private void AddPizza_Click(object sender, RoutedEventArgs e)
+        //{
             
+        //}
+
+        private void SelectedPizza_sc(object sender, SelectionChangedEventArgs e)
+        {
+            DoMyThing();
+        }
+
+        private void rbklein_Checked(object sender, RoutedEventArgs e)
+        {
+            DoMyThing();
+        }
+        private void rbmedium_Checked(object sender, RoutedEventArgs e)
+        {
+            DoMyThing();
+        }
+        private void rbgroot_Checked(object sender, RoutedEventArgs e)
+        {
+            DoMyThing();
+        }
+        private void DoMyThing()
+        {
+            if (selectedPizza != null)
+            {
+                string naam = selectedPizza.Name;
+                double prijs = selectedPizza.Price;
+
+                if (klein_rb.IsChecked == true)
+                {
+                    double nieuwprijs = prijs * 0.8;
+                    NaamPizza_tb.Text = naam;
+                    Prijs_tb.Text = "€ " + nieuwprijs.ToString();
+                }
+                else if (groot_rb.IsChecked == true)
+                {
+                    double nieuwprijs = prijs * 1.2;
+                    NaamPizza_tb.Text = naam;
+                    Prijs_tb.Text = "€ " + nieuwprijs.ToString();
+                }
+                else
+                {
+                    NaamPizza_tb.Text = naam;
+                    Prijs_tb.Text = "€ " + prijs.ToString();
+                }
+            }
+            else
+            {
+                Prijs_tb.Text = "";
+            }
+        }
+
+        private void DogMessage_Click(object sender, RoutedEventArgs e)
+        {
+            Bread myDog = new Bread();
+            myDog.Name = "mollitia";
+            myDog.MakeSound(); // Output: "The dog barks."
         }
     }
 }

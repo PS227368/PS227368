@@ -13,14 +13,13 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="25"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="Pizza_lv" ItemsSource="{Binding Pizzas}" SelectedItem="{Binding SelectedPizza}" Grid.Column="0" Grid.ColumnSpan="3">
+        <ListView x:Name="Pizza_lv" ItemsSource="{Binding Pizzas}" SelectedItem="{Binding SelectedPizza}" Grid.Column="0" Grid.ColumnSpan="3" SelectionChanged="SelectedPizza_sc">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Background="SkyBlue">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>   
+                            <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
@@ -39,17 +38,25 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="14" FontWeight="Bold"/>
+                                <TextBlock x:Name="Name" Grid.Column="1" Text="{Binding Name}" FontSize="14" FontWeight="Bold"/>
                             </Grid>
-                            <TextBlock Grid.Row="1" Text="{Binding Description}" TextWrapping="Wrap"/>
-                            <TextBlock Grid.Row="2" Text="{Binding Price}" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="Description" Grid.Row="1" Text="{Binding Description}" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="Price" Grid.Row="2" Text="{Binding Price}" TextWrapping="Wrap"/>
                         </Grid>
-                            <Grid Grid.Column="2">
-                                <Button x:Name="AddPizza_bt" Content="Add" Width="50" Click="AddPizza_Click" Background="SkyBlue"></Button>
-                            </Grid>
+                        <!--<Grid Grid.Column="2">
+                            <Button x:Name="AddPizza_bt" Content="Add" Width="50" Click="AddPizza_Click" Background="SkyBlue"></Button>
+                        </Grid>-->
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <TextBlock x:Name="NaamPizza_tb" Text="No Pizza Selected" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,50"></TextBlock>
+        <TextBlock x:Name="Prijs_tb" Text="€" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+        <StackPanel Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0">
+            <RadioButton x:Name="klein_rb" Content="Klein"  IsChecked="False" Checked="rbklein_Checked"></RadioButton>
+            <RadioButton x:Name="medium_rb" Content="Medium" IsChecked="True" Checked="rbmedium_Checked"></RadioButton>
+            <RadioButton x:Name="groot_rb" Content="Groot" IsChecked="False" Checked="rbgroot_Checked"></RadioButton>
+        </StackPanel>
+        <Button x:Name="DogMessage" Content="Dog Message" Click="DogMessage_Click" Width="75" Height="30" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
     </Grid>
 </Window>
