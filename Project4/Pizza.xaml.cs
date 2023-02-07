@@ -184,6 +184,7 @@ namespace Project4
             if (myResult == MessageBoxResult.Yes)
             {
                 Shoppingcart_lb.Items.RemoveAt(Shoppingcart_lb.Items.IndexOf(Shoppingcart_lb.SelectedItem.ToString()));
+                TotaalPrijs_tb.Text = "0.00";
             }
             else
             {
