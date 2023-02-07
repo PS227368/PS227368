@@ -200,7 +200,7 @@ namespace Project4
                 using (MySqlConnection conn = new MySqlConnection(connString))
                 {
                     int aantalkeer = Convert.ToInt32(pizza.aantal);
-                    while (aantalkeer > 0)
+                    while (aantalkeer < 1)
                     {
                         MySqlCommand pizzaCommand = new MySqlCommand("INSERT INTO shoppingcart (order_id, name, price) VALUES (@order_id, @name, @price)", conn);
                         pizzaCommand.Parameters.AddWithValue("@order_id", orderId);
@@ -210,6 +210,7 @@ namespace Project4
                         pizzaCommand.ExecuteNonQuery();
                         conn.Close();
                         aantalkeer = -1;
+                        orderId = +1;
                     }
                 }
                 using (MySqlConnection conn = new MySqlConnection(connString))
